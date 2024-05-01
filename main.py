@@ -20,23 +20,24 @@ signal.signal(signal.SIGTERM, signal_handler)
 
 # Initialize plot
 plt.ion()
-fig, ax = plt.subplots()
-x = []
-y = []
+fig, ax = plt.subplots(subplot_kw={'projection': 'polar'})
+r = []
+theta = []
 
 # Set up plot
-line, = ax.plot(x, y)
-ax.set_xlabel('Time')
-ax.set_ylabel('Value')
+line, = ax.plot(theta, r)
+ax.set_rmax(2)
+ax.set_rticks([0.5, 1, 1.5, 2])
+ax.set_rlabel_position(-22.5)
+ax.grid(True)
+ax.set_title("A line plot on a polar axis", va='bottom')
 
 # Update plot function
 def update_plot():
-    x.append(datetime.now())
-    y.append(random.random())
-    line.set_xdata(x)
-    line.set_ydata(y)
-    ax.relim()
-    ax.autoscale_view()
+    r.append(random.random() * 2)  # Random radial value between 0 and 2
+    theta.append(random.random() * 2 * np.pi)  # Random angle between 0 and 2*pi
+    line.set_xdata(theta)
+    line.set_ydata(r)
     fig.canvas.draw()
     fig.canvas.flush_events()
 
