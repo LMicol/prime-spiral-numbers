@@ -34,27 +34,32 @@ if __name__ == "__main__":
     # Initialize plot
     plt.ion()
     fig, ax = plt.subplots(subplot_kw={'projection': 'polar'})
-    r = []
-    theta = []
+    points = ax.scatter([], [])
 
-    # Set up plot
-    line, = ax.plot(theta, r)
     ax.set_rmax(2)
     ax.set_rticks([0.5, 1, 1.5, 2])
     ax.set_rlabel_position(-22.5)
-    ax.grid(True)
-    ax.set_title("A line plot on a polar axis", va='bottom')
 
     # Update plot function
+    n = 0
     def update_plot():
-        r.append(random.random() * 2)  # Random radial value between 0 and 2
-        theta.append(random.random() * 2 * np.pi)  # Random angle between 0 and 2*pi
-        line.set_xdata(theta)
-        line.set_ydata(r)
-        # Adjust radial range to zoom out
-        ax.set_rmax(max(r) + 1)  # Increase maximum radial value
-        fig.canvas.draw()
-        fig.canvas.flush_events()
+        global n
+        if is_prime(n):
+            # Add new prime to the plot
+            new_point = np.array([[n, n]])
+            old_points = points.get_offsets()
+            if len(old_points) > 0:
+                new_points = np.concatenate([old_points, new_point])
+            else:
+                new_points = new_point
+            points.set_offsets(new_points)
+
+            # Adjust radial range to zoom out
+            # Increase maximum radial value
+            ax.set_rmax(max(new_points[:, 1]) + 1)
+            fig.canvas.draw()
+            fig.canvas.flush_events()
+        n += 1
 
     # Continuously update plot
     while True:
