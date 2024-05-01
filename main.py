@@ -1,12 +1,14 @@
+# @Author : Lucas Micol
 
 import matplotlib.pyplot as plt
 import numpy as np
 import signal
 import time
 
-# Color parameters
+# Parameters
 scatter_color = "#55c3b2"
 background_color = "#0a0a0a"
+marker = '.'
 
 # Signal handler to exit gracefully
 def signal_handler(signal, frame):
@@ -56,7 +58,7 @@ if __name__ == "__main__":
     # Initialize plot
     plt.ion()
     fig, ax = plt.subplots(subplot_kw={'projection': 'polar'})
-    points = ax.scatter([], [], color=scatter_color, marker=".")
+    points = ax.scatter([], [], color=scatter_color, marker=marker)
 
     # Cosmetic parameters
     ax.grid(False)
@@ -73,4 +75,4 @@ if __name__ == "__main__":
     while True:
         update_plot()
         time.sleep(t)
-        t = t/len(str(n)) # makes the sleep faster as the number goes to inf
+        t = t/len(str(n)) # makes the sleep faster as the n goes to +inf
