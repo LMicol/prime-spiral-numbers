@@ -4,6 +4,10 @@ import numpy as np
 import signal
 import time
 
+# Color parameters
+scatter_color = "#55c3b2"
+background_color = "#0a0a0a"
+
 # Signal handler to exit gracefully
 def signal_handler(signal, frame):
     plt.close()
@@ -52,17 +56,21 @@ if __name__ == "__main__":
     # Initialize plot
     plt.ion()
     fig, ax = plt.subplots(subplot_kw={'projection': 'polar'})
-    points = ax.scatter([], [])
+    points = ax.scatter([], [], color=scatter_color, marker=".")
 
     # Cosmetic parameters
     ax.grid(False)
     ax.set_rmax(0)
     ax.set_rticks([])    
     ax.set_xticklabels([])
+    ax.set_facecolor(background_color)
+    fig.set_facecolor(background_color)
     ax.spines['polar'].set_visible(False)
 
     # Continuously update plot
     n = 0
+    t = 0.01
     while True:
         update_plot()
-        time.sleep(0.01)
+        time.sleep(t)
+        t = t/len(str(n)) # makes the sleep faster as the number goes to inf
