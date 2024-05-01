@@ -7,6 +7,17 @@ import time
 import math
 import signal
 
+# Signal handler to exit gracefully
+def signal_handler(signal, frame):
+    plt.close()
+    print("Exiting...")
+    exit(0)
+
+# Set signal handlers
+signal.signal(signal.SIGINT, signal_handler)
+signal.signal(signal.SIGTERM, signal_handler)
+
+
 # Initialize plot
 plt.ion()
 fig, ax = plt.subplots()
