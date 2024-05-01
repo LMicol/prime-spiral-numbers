@@ -2,7 +2,7 @@
 
 I've seen ["Why do prime numbers make these spirals?"](https://www.youtube.com/watch?v=EK32jo7i5LQ) video from 3Blue1Brown and decided to replicate the visual effect of the start of the video.
 
-[![ 3Blue1Brown](https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fyoutu.be%2FEK32jo7i5LQ%3Fsi%3D9gusOxxDDAAWMS07%26t%3D138)](https://youtu.be/EK32jo7i5LQ?si=9gusOxxDDAAWMS07&t=138)
+[![ 3Blue1Brown](https://img.youtube.com/vi/EK32jo7i5LQ/hqdefault.jpg)](https://youtu.be/EK32jo7i5LQ?si=9gusOxxDDAAWMS07&t=138)
 
 ---
 
@@ -20,11 +20,10 @@ and execute:
 
 ### Previews
 
-**Speeded up!!**
+    Demo video **Speeded up!!**
 
-<video width="320" height="240" controls>
-  <source src="media/vid.mp4" type="video/mp4">
-</video>
+
+    Different parameters for the markers
 
 <div style="display: flex;">
     <img src="media/1.png" alt="Marker '1'" style="width: 20%; margin-right: 10px;">
